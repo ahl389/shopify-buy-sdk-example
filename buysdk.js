@@ -7,6 +7,8 @@ $(function() {
 		domain: 'stickers-15.myshopify.com', // Your complete Shopify store domain
 		appId: '6'
 	});
+	
+	console.log(client);
 
 	var product;
 	var cart;
@@ -149,7 +151,7 @@ $(function() {
 		});
 		
 		// open product modal
-		$('.collection').on('click', '.image-hover-overlay, .variant-image, .product-details', function(){
+		$('.collection').on('click', '.image-overlay, .variant-image, .product-details', function(){
 			console.log('clicked');
 			$(this).parents('.product').find('.product-modal').show();
 			if (!$('.product-modal-underlay').length) {
