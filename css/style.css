@@ -6,6 +6,8 @@ body {
 	width: 95%;
 	margin: 0 auto;
 	max-width: 1200px;
+	padding-top: 75px;
+	padding-bottom: 75px;
 }
 
 h1.product-title {
