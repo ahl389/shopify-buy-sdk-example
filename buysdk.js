@@ -3,8 +3,8 @@ $(function() {
 	/* Build new ShopifyBuy client
 	============================================================ */
 	var client = ShopifyBuy.buildClient({
-		apiKey: '', // Your SDK API/access token 
-		domain: '', // Your complete Shopify store domain
+		apiKey: '248b922aeaee15d33c44aa3e657663f6', // Your SDK API/access token 
+		domain: 'stickers-15.myshopify.com', // Your complete Shopify store domain
 		appId: '6'
 	});
 
