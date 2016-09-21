@@ -204,11 +204,11 @@ $(function() {
 		$('.collection').on('change', 'select[name=variant-selection]', function(event) {
 			var element = $(this);
 			var num = element.attr('class').replace("product", "");
-			var productID = element.parent().next('.add-button').attr('data-product-id');
+			var productID = element.closest('.product').attr('data-product-id');
 			var variantID = element.val();
 			var variantName = element.find('option:selected').text();
 			
-			element.parents('.product-modal').find('.add-button').attr('data-variant-id', variantID);
+			$('.add-button[data-product-id="'+ productID +'"]').attr('data-variant-id', variantID)
 			
 			client.fetchProduct(productID).then(function(product) {
 			 	for (var i = 0; i < product.variants.length; i++) {
