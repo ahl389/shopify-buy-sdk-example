@@ -1,7 +1,9 @@
 body {
 	font-family: "Quicksand";
 }
-
+#cartAttribute {
+	-webkit-appearance: checkbox;
+}
 .container {
 	width: 95%;
 	margin: 0 auto;
@@ -77,6 +79,7 @@ input {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%);
+	-webkit-transform: translate(-50%);
 }
 
 .btn--cart-tab {
@@ -86,6 +89,7 @@ input {
 	right: 0;
 	top: 50%;
 	transform: translate(100%, -50%);
+	-webkit-transform: translate(100%, -50%);
 	opacity: 0;
 	min-width: inherit;
 	width: auto;
@@ -94,6 +98,7 @@ input {
 }
 .btn--cart-tab.js-active {
 	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
 	opacity: 1;
 }
 
@@ -123,11 +128,13 @@ input {
 	border-radius: 1px;
 	box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
 	transform: translateX(100%);
+	-webkit-transform: translateX(100%);
 	transition: box-shadow 0.2s ease-out, transform 0.2s ease-out;
 }
 
 .cart.js-active {
 	transform: translateX(0);
+	-webkit-transform: translateX(0);
 	box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
 	box-sizing: border-box;
 }
