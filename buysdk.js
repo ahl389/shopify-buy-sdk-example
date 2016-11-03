@@ -122,6 +122,11 @@ $(function() {
 
 		// checkout button click listener 
 		$('.btn--cart-checkout').on('click', function () {
+			var checkoutURL = cart.checkoutUrl;
+			// if ($('input.cartAttribute').is(':checked')) {
+			// 	var val = $('input.cartAttribute').val();
+			// 	checkoutURL += '&attributes[ATTRIBUTE NAME]=' + val;
+			// }
 			window.open(checkoutURL, '_self');
 		});
 
