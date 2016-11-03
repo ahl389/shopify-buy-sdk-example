@@ -14,7 +14,6 @@ $(function() {
 	
 	//grab collection ID from div.collection#collection-id in HTML
 	var collectionID = $('body').find('.collection').attr('id');
-	var collectionTitle;
 	
 	// check for existing cart in local storage, if one doesn't exist
 	// create new cart object
@@ -230,8 +229,8 @@ $(function() {
 	/*************************************************************/
 	function updateCollectionTitle() {
 		client.fetchCollection(collectionID).then(function(collection) {
-			collectionTitle = collection.attrs.title;
-			$('h2.collection-title').text(collectionTitle)
+			var collectionTitle = collection.attrs.title;
+			$('h2.collection-title').text(collectionTitle);
 		});
 	}
 	
