@@ -7,15 +7,14 @@ $(function() {
 		domain: 'stickers-15.myshopify.com', // Your complete Shopify store domain
 		appId: '6'
 	});
-	
-	console.log(client);
 
 	var product;
 	var cart;
 	var cartLineItemCount;
 	
 	//grab collection ID from div.collection#collection-id in HTML
-	var collection = $('body').find('.collection').attr('id');
+	var collectionID = $('body').find('.collection').attr('id');
+	var collectionTitle;
 	
 	// check for existing cart in local storage, if one doesn't exist
 	// create new cart object
@@ -36,9 +35,9 @@ $(function() {
 	var previousFocusItem;
 
 
-  /* Fetch collection and loop through to create HTML for each product
-  ======================================================================== */
-	client.fetchQueryProducts({collection_id: collection, sort_by: 'collection-default' }).then(function(products) {
+  	/* Fetch products in collection and loop through to create HTML for each product
+  	======================================================================== */
+	client.fetchQueryProducts({collection_id: collectionID, sort_by: 'collection-default' }).then(function(products) {
 		
 		// Products ==  the array of products within the collection
 		for (i = 0; i < products.length; i++) {
@@ -91,6 +90,7 @@ $(function() {
 		updateCartTabButton();
 		bindEventListeners();
 		attachOnVariantSelectListeners();
+		updateCollectionTitle();
 	});
 	
 	
@@ -123,8 +123,9 @@ $(function() {
 
 		// checkout button click listener 
 		$('.btn--cart-checkout').on('click', function () {
-			window.open(cart.checkoutUrl, '_self');
+			window.open(checkoutURL, '_self');
 		});
+
 
 		// buy button click listener 
 		$('.buy-button').on('click', buyButtonClickHandler);
@@ -161,7 +162,7 @@ $(function() {
 		
 		// close product modal
 		$('body').on('click', '.product-modal-underlay, .product-modal-close', hideModal);
-		//$('body').on('click', '.product-modal-underlay', hideModal);
+
 	}
 	
  	/* Attach and control listeners onto buy button
@@ -225,9 +226,14 @@ $(function() {
 	
 
 	
-	
+	/* Update collection title
 	/*************************************************************/
-	
+	function updateCollectionTitle() {
+		client.fetchCollection(collectionID).then(function(collection) {
+			collectionTitle = collection.attrs.title;
+			$('h2.collection-title').text(collectionTitle)
+		});
+	}
 	
 
 	/* Update product title
