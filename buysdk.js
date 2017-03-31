@@ -127,7 +127,8 @@ $(function() {
 			// 	var val = $('input.cartAttribute').val();
 			// 	checkoutURL += '&attributes[ATTRIBUTE NAME]=' + val;
 			// }
-			window.open(checkoutURL, '_self');
+			var checkoutWindow = window.open(checkoutURL);
+			window.addEventListener("message", checkoutPostMessageListener, checkoutWindow);
 		});
 
 
@@ -166,8 +167,28 @@ $(function() {
 		
 		// close product modal
 		$('body').on('click', '.product-modal-underlay, .product-modal-close', hideModal);
-
 	}
+	
+	
+	/* Event Listener handles post messages from checkout page
+	============================================================ */
+	function checkoutPostMessageListener(event) {
+		var origin = event.origin || event.originalEvent.origin;
+		
+		if (origin !== 'https://checkout.shopify.com') {
+			return;
+		}
+
+		var data = JSON.parse(event.data);
+		
+		if (data.current_checkout_page === '/checkout/thank_you') {
+			cart.clearLineItems();
+			
+			/* enter in your home page here */
+			//window.location = 'http://localhost/shopify-buy-sdk-example/';
+		}
+	}
+	  
 	
  	/* Attach and control listeners onto buy button
   	============================================================ */
